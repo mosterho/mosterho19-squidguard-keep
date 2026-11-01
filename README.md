@@ -54,7 +54,7 @@
 <li>In order to download the application, log on to a Windows PC, go to the github repository, click the green Code button, and select Download ZIP. Copy the file to the new server's folder of your choice (on a Windows PC you can use Filezilla client or the scp command).</li>
 <li>Example scp transfer from a Windows PC command prompt to the new Ubuntu server (replace three instances of "user" below with whatever usernames you have). I use login profiles since there should be little if any issues with rights.
 
-> scp C:\Users\(user)\Downloads\mosterho19-squidguard-main.zip (user)@192.168.##.##:/home/(user)
+> scp C:\Users\\(user)\Downloads\mosterho19-squidguard-main.zip (user)@192.168.##.##:/home/(user)
 
 [github](https://github.com/mosterho/mosterho19-squidguard/tree/main)
 
@@ -76,7 +76,7 @@
 
 ## Make Changes to .conf Files
 <ol>
-<li>Confirm the following folders and files are in "/mosterho19-squidguard-workingdir". You *may* need to make changes to squid.conf, *definitely* to squidGuard.conf and *should* change the email address in the update-blacklist.sh.
+<li>Confirm the following folders and files are in "/mosterho19-squidguard-workingdir". You *may* need to make changes to squid.conf and start-squidguard.sh, *definitely* to squidGuard.conf and *should* change the email address in the update-blacklist.sh.
 	<ul>
 	<li>directory "squidguard" -- The blacklist and whitelist files will be setup in this directory. 
 	<li>directory squidguarderrors. This is used by the httpd image. This contains a couple folders and an index.html file. The html file is used for issuing a warning message when attempting to display a blacklisted site. 
