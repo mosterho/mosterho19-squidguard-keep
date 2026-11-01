@@ -69,7 +69,7 @@
 
 <li>If you unzipped the folders in your /home/(your_user_name) directory and you now wish to move or copy just the required objects to /usr/src, you can do this now by:
 <ul>
-<li>sudo cp mosterho19-squidguard-main/mosterho19-squidguard-workingdir/ /usr/src/
+<li>sudo cp -r mosterho19-squidguard-main/mosterho19-squidguard-workingdir/ /usr/src/
 <li>cd /usr/src/mosterho19-squidguard-workingdir
 </ul>
 </ol>
