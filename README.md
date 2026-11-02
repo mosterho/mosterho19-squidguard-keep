@@ -9,7 +9,7 @@
 ## Notes
 <ol>
 <li>Please don't perform a Docker pull directly from a terminal session or the Docker website, it won't work as a standalone. Follow this document and use the bash files from the github repository to help build the application for you. 
-<li>UPDATE: just realized /usr/src is not the best place to put scripts. I changed all references from /usr/src to /usr/local/bin.
+<li>UPDATE: just realized /usr/src is not the best place to put scripts. I changed all references from /usr/src to /opt.
 <li>UPDATE: I removed all references to using a home folder to run the server scripts, but I do reference it when doing certain downloads.
 <li>git is installed on the server, but I'm not familiar enough with git's command lines to pull the repository onto the server. </li>
 <li>If you don't see any pictures in the Docker repository, try the README in the Github repository link.
@@ -20,10 +20,10 @@
 ## Quick Start Install Guide
 <ol>
 <li>Install Ubuntu server, latest updates, and Docker with additional packages.
-<li>Using the github link, download and unzip mosterho19-squidguard-main.zip and copy to Ubuntu system folder /usr/local/bin.
+<li>Using the github link, download and unzip mosterho19-squidguard-main.zip and copy to Ubuntu system folder /opt.
 <li>Make any neccessary changes to files (e.g., squid.conf, squidguard.conf, etc.)
-<li>Pull Docker images into /usr/local/bin/mosterho19-squidguard-workingdir folder by running "sudo bash ./install-step-one.sh"
-<li>Setup Docker folders and files in /usr/local/bin/mosterho19-squidguard-workingdir folder by running "sudo bash ./install-step-two.sh"
+<li>Pull Docker images into /opt/mosterho19-squidguard-workingdir folder by running "sudo bash ./install-step-one.sh"
+<li>Setup Docker folders and files in /opt/mosterho19-squidguard-workingdir folder by running "sudo bash ./install-step-two.sh"
 <ul><li>See the "ISSUES" section if the wget download from the blacklist download site doesn't work</li></ul>
 <li>Confirm squid, squidguard, and httpd are running in the Docker session.
 </ol>
@@ -67,10 +67,10 @@
 
 ![Pic of server home folder structure](Documentation/Docker_tree_home.jpg)
 
-<li>To just move or copy the necessary folders and files to /usr/local/bin, you can do this now by:
+<li>To just move or copy the necessary folders and files to /opt, you can do this now by:
 <ul>
-<li>sudo cp -r mosterho19-squidguard-main/mosterho19-squidguard-workingdir/ /usr/local/bin/
-<li>cd /usr/local/bin/mosterho19-squidguard-workingdir
+<li>sudo cp -r mosterho19-squidguard-main/mosterho19-squidguard-workingdir/ /opt/
+<li>cd /opt/mosterho19-squidguard-workingdir
 </ul>
 </ol>
 
@@ -178,7 +178,7 @@
 
 ## Issues
 <ol>
-<li>While doing test installations, I've made a handful of mistakes, such as forget to copy the "mosterho19-squidguard-workingdir" directory to /usr/local/bin. It seems to work if you work with that directory as needed when running scripts, running "chown", etc. Or you can find all objects unzipped from the "mosterho19-squidguard-main.zip", delete them and start the install over.
+<li>While doing test installations, I've made a handful of mistakes, such as forget to copy the "mosterho19-squidguard-workingdir" directory to /opt. It seems to work if you work with that directory as needed when running scripts, running "chown", etc. Or you can find all objects unzipped from the "mosterho19-squidguard-main.zip", delete them and start the install over.
 <li>IMPORTANT: The scripts to download the blacklists from this [Blacklist FTP Download site](ftp://ftp.ut-capitole.fr/pub/reseau/cache/squidguard_contrib/blacklists.tar.gz) aren't totally reliable. I'm not sure if it's the nature of using wget to download tar files from ftp.ut-capitole.fr, or if the website itself has uptime issues. 
 <ul>
 <li>Open a browser and use the following link to download the blacklists.tar.gz file. 
@@ -194,14 +194,14 @@
 <li>Once the blacklists.tar.gz file is downloaded using a web browser, copy it to "mosterho19-squidguard-workingdir/squidguard/db". Depending on rights assigned to the folders on the server, you may have to download the file to your /home/user folder first, then copy to "mosterho19-squidguard-workingdir/squidguard/db". Don't forget to replace "user" with your username.
 
 On a Windows pc:
-> scp C:\Users\user\Downloads\blacklists.tar.gz user@192.168.##.##:/usr/local/bin/mosterho19-squidguard-workingdir/squidguard/db
+> scp C:\Users\user\Downloads\blacklists.tar.gz user@192.168.##.##:/opt/mosterho19-squidguard-workingdir/squidguard/db
 
 If the folder rights on the destination server don't allow that (permission denied)
 On a pc:
 > scp C:\Users\user\Downloads\blacklists.tar.gz user@192.168.##.##:/home/user
 
 then on the server:
-> sudo cp /home/user/blacklists.tar.gz /usr/local/bin/mosterho19-squidguard-workingdir/squidguard/db
+> sudo cp /home/user/blacklists.tar.gz /opt/mosterho19-squidguard-workingdir/squidguard/db
 
 <li>Ensure you are in directory "mosterho19-squidguard-workingdir". 
 <li>Run "sudo bash update-blacklist-part2.sh"</li>
