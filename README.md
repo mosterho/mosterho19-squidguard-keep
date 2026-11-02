@@ -108,11 +108,12 @@
 ---
 ![Pic of successful blacklist download](Documentation/Docker_install_steptwo_successful2.jpg)
 
-<li>There is a possibility that the blacklists.tar.gz download may fail; if it does, the script will usually stop within a few seconds. Buried in the lines of results, you may see "failed:connection refused" and "error code 4: wget failed to download the file". The squid processes are running, but there is no blacklist to stop undesired traffic. You can wait a few minutes and run "install-step-two.sh" again, or see the ISSUES section below to grab the blacklists.tar.gz using another method.</li>
-<li>Screen capture of a failed download (website down):
+<li>There is a possibility that the (ftp.ut-capitole.fr) blacklists.tar.gz download may fail; if it does, the script should download the "last resort" tar.gz file from an MS Azure site. </li>
+<li>Screen capture of a failed download (ftp.ut-capitole.fr website down):
 
 ![Pic of unsuccessful blacklist download](Documentation/Docker-update-blacklist-failed.jpg)
 
+<li>If the MS Azure last resort download also failed, go to the ISSUES section, follow those instructions, and then come back here.
 <li>Once you have a successful blacklist file download and setup the folders and files **(whether automatically using the above instructions or manually),** the tree structure should look like this (again, if you don't see the picture in Docker, try Github):</li>
 </ol>
 
@@ -121,10 +122,9 @@
 ## Confirm Squidguard is running
 <ol>
 <li>Confirm that the containers are still running by running "sudo docker ps"
-<li>Make a note of the "mosterho19/squidguard" containerid that is running.
-<li>Run "sudo docker exec -it (first 2-3 letters of the containerid without parenthesis) bash". Confirm you are in the running container by checking your login.
+<li>Run "access-docker-container.sh". Confirm you are in the running container by checking your login.
 	<ul>
-	<li>The login and folder should look like "root@d36c...:/#"... which is the containerID.
+	<li>The login should look similar to "root@d36c...:/#"... which is the containerID.
 	</li>
 	</ul>
 <li>Run "nano /var/log/squidguard/squidGuard.log"
@@ -175,7 +175,7 @@
 ## Issues
 <ol>
 <li>While doing test installations, I've made a handful of mistakes, such as forget to copy the "mosterho19-squidguard-workingdir" directory to /usr/src. It seems to work if you work with that directory as needed when running scripts, running "chown", etc. Or you can find all objects unzipped from the "mosterho19-squidguard-main.zip", delete them and start the install over.
-<li>IMPORTANT: The scripts to download the blacklists from this [Blacklist FTP Download site](ftp://ftp.ut-capitole.fr/pub/reseau/cache/squidguard_contrib/blacklists.tar.gz) aren't totally reliable. I'm not sure if it's the nature of using wget to download tar files, or if the website itself has uptime issues. 
+<li>IMPORTANT: The scripts to download the blacklists from this [Blacklist FTP Download site](ftp://ftp.ut-capitole.fr/pub/reseau/cache/squidguard_contrib/blacklists.tar.gz) aren't totally reliable. I'm not sure if it's the nature of using wget to download tar files from ftp.ut-capitole.fr, or if the website itself has uptime issues. 
 <ul>
 <li>Open a browser and use the following link to download the blacklists.tar.gz file. 
 
