@@ -9,8 +9,8 @@
 ## Notes
 <ol>
 <li>Please don't perform a Docker pull directly from a terminal session or the Docker website, it won't work as a standalone. Follow this document and use the bash files from the github repository to help build the application for you. 
-<li>UPDATE: just realized /usr/src is not the best place to put scripts. I changed all references to /usr/src to /usr/local/bin.
-<li>UPDATE: I removed all references to using a home folder to run the scripts, but I do reference it when doing certain downloads.
+<li>UPDATE: just realized /usr/src is not the best place to put scripts. I changed all references from /usr/src to /usr/local/bin.
+<li>UPDATE: I removed all references to using a home folder to run the server scripts, but I do reference it when doing certain downloads.
 <li>git is installed on the server, but I'm not familiar enough with git's command lines to pull the repository onto the server. </li>
 <li>If you don't see any pictures in the Docker repository, try the README in the Github repository link.
 </ol>
@@ -30,7 +30,7 @@
 
 ## Install Ubuntu server.
 <ol>
-<li>Install Ubuntu server 22.04.5 LTS. Mine is on VMware Workstation, 4Gb of memory with 1 processor/4 core and 50Gb of disk. 
+<li>Install Ubuntu server 22.04.5 LTS. Mine is on VMware Workstation, 8Gb of memory with 1 processor/4 core and 50Gb of disk. 
 	<ul>
 	<li>Accept defaults during install, except check the box to install ssh-server (you will need this later).</li>
 	</ul>
@@ -103,8 +103,10 @@
 <ol>
 <li>Run "sudo bash install-step-two.sh"
 <li>There will be a series of commands that will display results very fast. 
-<li>If the blacklists.tar.gz download is successful, the script will start building the blacklist binary DB files. It may appear that the system froze when creating a large blacklist, but it is running OK.
-<li>If the blacklists.tar.gz download was successful and the docker containers started, after a few minutes you should see something similar to the second screen capture below.</li>
+<li>If the blacklists.tar.gz download is successful, the script will start building the blacklist binary DB files. 
+<ul>
+<li>It may appear that the system froze when creating a large blacklist, but it is running OK.
+</ul><li>If the blacklists.tar.gz download was successful and the docker containers started, after a few minutes you should see something similar to the second screen capture below.</li>
 
 ![Pic of successful blacklist download](Documentation/Docker_install_steptwo_successful.jpg)
 ---
@@ -124,7 +126,7 @@
 ## Confirm Squidguard is running
 <ol>
 <li>Confirm that the containers are still running by running "sudo docker ps"
-<li>Run "access-docker-container.sh". Confirm you are in the running container by checking your login.
+<li>Run "bash ./access-docker-container.sh". Confirm you are in the running container by checking your login.
 	<ul>
 	<li>The login should look similar to "root@d36c...:/#"... which is the containerID.
 	</li>
